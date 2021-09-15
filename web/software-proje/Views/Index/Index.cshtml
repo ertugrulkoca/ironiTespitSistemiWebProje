@@ -1,0 +1,122 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/css.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="anm">
+        <div class="baslik">
+            <div class="baslik2">
+                <h1>Irony Detection System</h1>
+                <br>
+                <h3>Investigating the Neural Models for Irony Detection on English Informal Texts.</h3>
+            </div>
+        </div>
+        <div class="input">
+            <div class="input2">
+                <p>Enter Text Here:</p>
+                <br>
+                <hr>
+                <br>
+                <form id="irony" action="/Index/Index" method="POST">
+                    <textarea placeholder="" name="textarea" id="textareaa" cols="90" rows="2"></textarea>
+                    <input id="submit" type="submit" value="Submit">
+                </form>
+                <button id="start_button" onclick="record()"><img style="height: 40px; width: 40px;" alt="Start" id="start_img" src="~/Content/mic.png" /></button>
+                <div id="result" style="text-align:center">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="gif">
+        <img src="https://static.tildacdn.com/tild3431-3132-4261-b363-363132366562/giphy.gif" alt="">
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#irony").submit(function (sayfa) {
+                sayfa.preventDefault()
+
+                var metin = $("#textareaa").val()
+                var apiurl = "http://127.0.0.1:5000/" + metin
+                $.ajax({
+                    method: 'GET',
+                    url: apiurl,
+                    success: function (metin) {
+                        console.log(metin)
+                        sonuc = `
+                                    <h2>${metin.sonuc}</h2>
+                                    <h2>${metin.yuzde} %</h2>
+                                `
+                        $("#result").html(sonuc)
+                    }
+                })
+            })
+        })
+        //$(function () {
+        //    $("#submit").click(function () {
+        //        var text = new Object();
+        //        text.Text = $('#textareaa').val();
+        //        if (text != null) {
+        //            $.ajax({
+        //                type: "POST",
+        //                url: "/Index/AjaxPostCall",
+        //                data: JSON.stringify(text),
+        //                contentType: "application/json; charset=utf-8",
+        //                dataType: "json",
+        //                success: function (response) {
+        //                    if (response != null) {
+        //                        console.log("Text : " + response.Text);
+        //                    } else {
+        //                        console.log("Something went wrong");
+        //                    }
+        //                },
+        //                failure: function (response) {
+        //                    console.log(response.responseText);
+        //                },
+        //                error: function (response) {
+        //                    console.log(response.responseText);
+        //                }
+        //            });
+        //        }
+        //    });
+        //});
+    </script>
+
+
+
+
+
+    <script>
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = "en-US";
+
+        function record() {
+            recognition.onresult = function (event) {
+                document.getElementById("textareaa").value = event.results[0][0].transcript;
+                console.log(event);
+
+            }
+            recognition.start();
+        }
+
+    </script>
+</body>
+</html>

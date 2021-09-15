@@ -1,0 +1,100 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(248, 228, 228);
+}
+
+@-webkit-keyframes slide {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -400px 0;
+    }
+}
+
+@font-face {
+    font-family: 'Perfect DOS VGA 437';
+    src: url('../fonts/Perfect DOS VGA 437.ttf') format('truetype');
+}
+.anm {
+    width: 750px;
+    height: 500px;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 10px;
+    box-shadow: 15px 20px grey;
+    background: rgb(44, 43, 43) url('../images/geometry2.jpg') repeat 0 0;
+    -webkit-animation: slide 20s linear infinite;
+    overflow: hidden;
+}
+
+
+.baslik {
+    font-family: 'Perfect DOS VGA 437';
+}
+
+.baslik2 {
+    width: 700px;
+    margin: auto;
+    padding-top: 15px;
+}
+
+.input {
+    top: 200px;
+    width: 100%;
+    margin: auto;
+    margin-top: 0%;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Perfect DOS VGA 437';
+}
+
+.input2 {
+    width: 700px;
+    margin: auto;
+    padding-top: 15px;
+}
+
+.input hr {
+    width: 100%;
+    color: #000;
+}
+
+.input p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.input textarea {
+    border-radius: 5px;
+    padding: 10px;
+    overflow: hidden;
+    max-width: 100%;
+    max-height: 100px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.input input[type=submit] {
+    position: relative;
+    left: 40%;
+    margin: auto;
+    top: 10px;
+    width: 120px;
+    height: 40px;
+    background-color: rgb(29, 119, 236);
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Perfect DOS VGA 437';
+}
+
+::placeholder {
+    font-size: 18px;
+    font-family: 'Perfect DOS VGA 437';
+}
